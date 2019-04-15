@@ -78,4 +78,3 @@ while running: # Event loop (a while loop)
         ipAddress(webpage)
     else:
         print("That command does not exist.")
-        
