@@ -1,3 +1,5 @@
+#!/bin/python3
+
 # Importing the modules necessary to make our terminal emulator
 import os, socket
 
