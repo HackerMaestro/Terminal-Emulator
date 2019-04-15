@@ -1,2 +1,2 @@
 # Terminal-Emulator
-Version 2.0 has now been released. Some new commands have been added.
+Version 3.1 has now been released. You can now delete directories and the code is on line less!
