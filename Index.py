@@ -52,6 +52,7 @@ while running: # Event loop (a while loop)
         else:
             print("That path doesn't exist.")
     elif user_input == "pathExist":
+        print("Please enter in the path of which you want to know whether it exists or not.")
         path = input(">>>$")
         if os.path.exists == True:
             print("This path does exist.")
@@ -80,6 +81,7 @@ while running: # Event loop (a while loop)
         for x in range(int(num1), (int(num2) + 1)):
             print(portscan(x, IPAddress))
     elif user_input == "getIPaddress":
+        print("Please enter in the webaddress which you would like to find the IP address of.")
         webpage = input(">>>$")
         ipAddress(webpage)
     else:
