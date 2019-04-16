@@ -41,10 +41,12 @@ while running: # Event loop (a while loop)
         running = False
         exit()
     elif user_input == "mkdir":
+        print("Please enter in the path which you would like your directory to be in.")
         locations = input(">>>$")
         if os.path.exists(locations) == True:
             print("That path does exist.")
             os.chdir(locations)
+            print("Please enter in the name of your directory.")
             path = input(">>>$")
             makeDir(path)
         else:
@@ -58,21 +60,23 @@ while running: # Event loop (a while loop)
     elif user_input == "pwd":
         print(os.getcwd())
     elif user_input == "cd":
+        print("Please type in the path of the directory which you would like to move to.")
         newDirectory = input(">>>$")
         if os.path.exists(newDirectory) == True:
             changeDir(newDirectory)
         else:
             print("That directory doesn't exist.")
     elif user_input == "rm":
+        print("Please enter the path of the directory (including the name of the directory).")
         Dir = input(">>>$")
         if os.path.exists(Dir) == True:
             removeDir(Dir)
         else:
             print("That directory doesn't exist.")
     elif user_input == "portscan":
-        num1 = input("From which port would you like to scan\n>>>$")
-        num2 = input("To which port would you like to scan\n>>>$")
-        IPAddress = input("Enter in the IP address of the targetted host\n>>>$")
+        num1 = input("What is the starting port for the scanning (inclusive of this port). Please the port number in figures.\n>>>$")
+        num2 = input("Up till which port would you like to scan (inclusive of this port). Please enter the port number in figures.\n>>>$")
+        IPAddress = input("Please enter in the IP address of the targetted host.\n>>>$")
         for x in range(int(num1), (int(num2) + 1)):
             print(portscan(x, IPAddress))
     elif user_input == "getIPaddress":
