@@ -36,7 +36,7 @@ def ipAddress(website):
 running = True # Boolean variable
 
 while running: # Event loop (a while loop)
-    user_input = input(">>>$")
+    user_input = input(os.pwd + ">>>$")
     if user_input == "exit":
         running = False
         exit()
