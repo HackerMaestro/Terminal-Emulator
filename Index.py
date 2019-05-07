@@ -1,12 +1,14 @@
 #!/bin/python3
 
 # Importing the modules necessary to make our terminal emulator
-import os, socket
+import os, socket, time
 
 # Creating a socket for network based commands
 masterSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # Defining functions
+def pwd():
+  print(os.getcwd())
 def makeDir(location):
     os.mkdir(location)
 
@@ -33,56 +35,66 @@ def ipAddress(website):
     print("The webaddress which you entered was invalid.")
 
 # Creating a while loop so that the terminal keeps on running untill the user types in "exit"
+
 running = True # Boolean variable
+
+print("\t\t\t\t\t\t\t\t\t\tadiOS")
+
+directories = []
 
 while running: # Event loop (a while loop)
     user_input = input(os.getcwd() + ">")
-    if user_input == "exit":
-        running = False
-        exit()
-    elif user_input == "mkdir":
-        print("Please enter in the path which you would like your directory to be in.")
-        locations = input(">>>$")
-        if os.path.exists(locations) == True:
-            print("That path does exist.")
-            os.chdir(locations)
-            print("Please enter in the name of your directory.")
-            path = input(">>>$")
-            makeDir(path)
-        else:
-            print("That path doesn't exist.")
-    elif user_input == "pathExist":
-        print("Please enter in the path of which you want to know whether it exists or not.")
-        path = input(">>>$")
-        if os.path.exists == True:
-            print("This path does exist.")
-        else:
-            print("This path does not exist.")
-    elif user_input == "pwd":
-        print(os.getcwd())
-    elif user_input == "cd":
-        print("Please type in the path of the directory which you would like to move to.")
-        newDirectory = input(">>>$")
-        if os.path.exists(newDirectory) == True:
-            changeDir(newDirectory)
-        else:
-            print("That directory doesn't exist.")
-    elif user_input == "rm":
-        print("Please enter the path of the directory (including the name of the directory).")
-        Dir = input(">>>$")
-        if os.path.exists(Dir) == True:
-            removeDir(Dir)
-        else:
-            print("That directory doesn't exist.")
-    elif user_input == "portscan":
-        num1 = input("What is the starting port for the scanning (inclusive of this port). Please the port number in figures.\n>>>$")
-        num2 = input("Up till which port would you like to scan (inclusive of this port). Please enter the port number in figures.\n>>>$")
-        IPAddress = input("Please enter in the IP address of the targetted host.\n>>>$")
-        for x in range(int(num1), (int(num2) + 1)):
-            print(portscan(x, IPAddress))
-    elif user_input == "getIPaddress":
-        print("Please enter in the webaddress which you would like to find the IP address of.")
-        webpage = input(">>>$")
-        ipAddress(webpage)
+    user2 = user_input.split()
+    if len(user2) == 1:
+        if user2[0] == "exit":
+            print("adiOS")
+            for i in range(5):
+                print(5- i)
+                time.sleep(1)
+            exit()
+        elif user2[0] == "pwd":
+            pwd()
+        elif user2[0] == "ls":
+            print(directories)
+    if len(user2) == 2:
+        if user2[0] == "cd":
+            if os.path.exists(user2[1]) == True:
+                changeDir(user2[1])
+        elif user2[0] == "mkdir":
+            makeDir(user2[1])
+            directories.append(user2[1])
+        elif user2[0] == "pathExists":
+            pathExist(user2[1])
+        elif user2[0] == "getIPaddress":
+            try:
+                ipAddress(user2[1])
+            except:
+                print("The webaddress which you entered was wrong.")
+        elif user2[0] == "rm":
+            if os.path.exists(user2[1]) == True:
+                removeDir(user2[1])
+                directories.remove(user2[1])
+            else:
+                print("That path doesn't exist")
+    elif len(user2) == 3:
+        if user2[0] == "mkdir":
+            if os.path.exists(user2[1]) == True:
+                makeDir(user2[2])
+                directories.append(user2[2])
+            else:
+                print("That path doesn't exist")
+    elif len(user2) == 4:
+        if user2[0] == "portscan":
+            port1 = int(user2[1])
+            port2 = int(user2[1])
+            try:
+                for port in range(port1, port2 + 1):
+                    if portscan(port, user2[3]) == True:
+                        print("%d: Open" % port)
+                    else:
+                        print("%d: Closed" % port)
+            except:
+                print("We could not connect to that webaddress.")
+            
     else:
-        print("That command does not exist.")
+        print("That command doesn't exists")
