@@ -1,2 +1,2 @@
 # Terminal-Emulator
-Version 5.1 has now been released. The interface is now more easier to use!
+Version 6.0 has been released. More linux-like. Has a friendlier interface.
